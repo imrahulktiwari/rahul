@@ -33,7 +33,7 @@ export function SpotlightName({ children, className = "" }: SpotlightNameProps) 
           className={`absolute inset-0 ${
             resolvedTheme === "dark"
               ? "bg-gradient-to-r from-transparent via-white/20 to-transparent"
-              : "bg-gradient-to-r from-transparent via-blue-200/30 to-transparent"
+              : "bg-gradient-to-r from-blue-200/30 via-blue-300/40 to-transparent"
           }`}
           style={{
             filter: `blur(${isHovered ? "15px" : "20px"})`,
