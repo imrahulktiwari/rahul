@@ -11,6 +11,7 @@ import Image from "next/image"
 import StructuredData from "@/components/structured-data"
 import { useTheme } from "@/components/theme-provider"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { TypewriterEffect } from "@/components/typewriter-effect"
 import {
   ThemeAwareFloatingElements,
   ThemeAwareGradientText,
@@ -26,7 +27,6 @@ import {
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [currentSkill, setCurrentSkill] = useState(0)
   const [selectedProject, setSelectedProject] = useState(null)
 
   const { scrollYProgress } = useScroll()
@@ -105,13 +105,6 @@ export default function Portfolio() {
       achievements: ["Learned React ecosystem", "Built responsive websites", "Collaborated with senior developers"],
     },
   ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSkill((prev) => (prev + 1) % skills.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [skills.length])
 
   const { resolvedTheme } = useTheme()
 
@@ -222,18 +215,12 @@ export default function Portfolio() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 mb-8"
+                  className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 mb-8 min-h-[4rem] flex items-center justify-center"
                 >
-                  Software Developer specializing in{" "}
-                  <motion.span
-                    key={currentSkill}
-                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -20, scale: 0.8 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <ThemeAwareGradientText className="font-semibold">{skills[currentSkill]}</ThemeAwareGradientText>
-                  </motion.span>
+                  <span className="mr-2">Software Developer specializing in</span>
+                  <ThemeAwareGradientText className="font-semibold">
+                    <TypewriterEffect words={skills} typeSpeed={120} deleteSpeed={80} delayBetweenWords={2500} />
+                  </ThemeAwareGradientText>
                 </motion.div>
 
                 <motion.p
@@ -294,8 +281,8 @@ export default function Portfolio() {
                     <Image
                       src="/rahul-tiwari-portrait.jpg"
                       alt="Rahul Tiwari - Software Developer"
-                      width={500}
-                      height={600}
+                      width={350}
+                      height={500}
                       className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                       priority
                     />
