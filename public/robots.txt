@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://therahultiwari.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Host
+Host: therahultiwari.com
+
+# Disallow specific paths (if any)
+# Disallow: /admin/
+# Disallow: /private/
