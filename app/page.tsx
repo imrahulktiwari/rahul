@@ -563,7 +563,90 @@ export default function Portfolio() {
           </section>
 
           {/* Experience Section */}
-          
+          <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="text-center mb-16"
+              >
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Experience</h2>
+                <ThemeAwareSectionDivider />
+              </motion.div>
+
+              <div className="relative">
+                <motion.div
+                  className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-600 to-purple-600"
+                  style={{ height: "100%" }}
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  transition={{ duration: 1.5 }}
+                  viewport={{ once: true }}
+                />
+
+                {experience.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                    className={`relative flex items-center mb-12 ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
+                  >
+                    <div className={`w-5/12 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
+                      <ThemeAwareCard className="bg-white dark:bg-gray-900 shadow-lg">
+                        <Card>
+                          <CardHeader>
+                            <div className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 mb-2">
+                              <Calendar className="w-4 h-4" />
+                              <span className="text-sm font-medium">{exp.duration}</span>
+                            </div>
+                            <CardTitle className="text-xl text-gray-900 dark:text-white">{exp.position}</CardTitle>
+                            <CardDescription className="text-lg font-medium text-gray-700 dark:text-gray-300">
+                              {exp.company}
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-600 dark:text-gray-400 mb-4">{exp.description}</p>
+                            <ul className="space-y-2">
+                              {exp.achievements.map((achievement, i) => (
+                                <motion.li
+                                  key={i}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  whileInView={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: i * 0.1 }}
+                                  viewport={{ once: true }}
+                                  className="flex items-center text-sm text-gray-600 dark:text-gray-400"
+                                >
+                                  <motion.div
+                                    className="w-2 h-2 bg-blue-600 rounded-full mr-3"
+                                    animate={{
+                                      scale: [1, 1.2, 1],
+                                      opacity: [0.7, 1, 0.7],
+                                    }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Number.POSITIVE_INFINITY,
+                                      delay: i * 0.2,
+                                    }}
+                                  />
+                                  {achievement}
+                                </motion.li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      </ThemeAwareCard>
+                    </div>
+
+                    <ThemeAwareTimelineDot isActive={index === 0} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
 
           {/* Contact Section */}
           <section id="contact" className="py-20 bg-white dark:bg-gray-900">
